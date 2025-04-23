@@ -1,3 +1,5 @@
+name: Robot Framework Tests
+
 on: [push, pull_request]
 
 jobs:
@@ -7,27 +9,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4  
 
-    - name: Checkout
+      - name: Run Robot Framework tests
+        uses: joonvena/robotframework-docker-action@v1.0
+        with:
+          robot_reports_dir: 'reports'  
 
-      uses: actions/checkout@v3
-
-    - name: Robot Framework
-
-      uses: joonvena/robotframework-docker-action@v1.0
-
-      with:
-
-        robot_reports_dir: 'reports'
-
-    - name: Upload test results
-
-      uses: actions/upload-artifact@v3
-
-      if: always()
-
-      with:
-
-        name: robot-reports
-
-        path: reports
+      - name: Upload test results
+        uses: actions/upload-artifact@v4  
+        if: always()
+        with:
+          name: robot-reports
+          path: reports  
