@@ -1,0 +1,33 @@
+on: [push, pull_request]
+
+jobs:
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout
+
+      uses: actions/checkout@v2
+
+    - name: Robot Framework
+
+      uses: joonvena/robotframework-docker-action@v1.0
+
+      with:
+
+        robot_reports_dir: 'reports'
+
+    - name: Upload test results
+
+      uses: actions/upload-artifact@v2
+
+      if: always()
+
+      with:
+
+        name: robot-reports
+
+        path: reports
