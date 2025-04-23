@@ -12,7 +12,7 @@ Step 1: Preparar o payload de autenticação
 
 Step 2: Enviar a solicitação POST de autenticação
     ${response}=    POST    ${BASE_URL}/auth    json=${auth_payload}
-    Log    🔄 Resposta: ${response.text}
+    Log     Resposta: ${response.text}
     Set Test Variable    ${auth_response}    ${response}
 
 Step 3: Verificar se o token foi gerado com sucesso
@@ -21,7 +21,7 @@ Step 3: Verificar se o token foi gerado com sucesso
     ${json}=    Set Variable    ${auth_response.json()}
     ${token}=    Get From Dictionary    ${json}    token
     Should Not Be Empty    ${token}
-    Log    ✅ Token gerado com sucesso: ${token}
+    Log     Token gerado com sucesso: ${token}
 
 *** Test Cases ***
 Cenário: Validar geração de token com sucesso

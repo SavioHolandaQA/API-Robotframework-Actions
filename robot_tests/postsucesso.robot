@@ -48,6 +48,6 @@ Cadastrando Uma Reserva
     Should Be Equal As Strings    ${booking_info['additionalneeds']}   Breakfast
 
     # Acessando e validando os campos do objeto aninhado "bookingdates"
-    ${bookingdates_info}=    Get From Dictionary    ${booking_info}    bookingdates
+    ${bookingdates_info}=    Get From Dictionary    ${booking_info}   bookingdates
     Should Be Equal As Strings    ${bookingdates_info['checkin']}     2018-01-01
     Should Be Equal As Strings    ${bookingdates_info['checkout']}    2019-01-01
